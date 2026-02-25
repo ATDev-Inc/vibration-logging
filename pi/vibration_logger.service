@@ -1,0 +1,24 @@
+[Unit]
+Description=LSM6DSOX 6.66kHz Vibration Logger
+After=network.target
+
+[Service]
+# We run the wrapper script to handle both Logger + Janitor
+ExecStart=/home/ubuntu/vibration-logger/run_system.sh
+WorkingDirectory=/home/ubuntu/vibration-logger
+User=root
+Restart=always
+
+# --- High-Performance Tweaks ---
+# Pin to CPU 3 to avoid WiFi/OS interrupts on CPU 0
+CPUAffinity=3
+# Real-time FIFO scheduling with high priority
+CPUSchedulingPolicy=fifo
+CPUSchedulingPriority=80
+
+# Ensure SIGTERM is sent to the whole process group
+KillMode=control-group
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
