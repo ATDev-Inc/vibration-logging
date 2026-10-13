@@ -43,14 +43,24 @@ python user/pull_data_friendly.py
 
 ## 🛠 For Developers: Installation on Pi
 
-### 1. Build & Install
+### 1. Clone (with submodules)
+The firmware depends on the ST `lsm6dsox-pid` driver, included as a git submodule at `pi/firmware/drivers/lsm6dsox-pid`. Clone with submodules so the build can find it:
+```bash
+git clone --recurse-submodules git@github.com:ATDev-Inc/vibration-logging.git
+```
+If you already cloned without it:
+```bash
+git submodule update --init --recursive
+```
+
+### 2. Build & Install
 Run the installer on the Pi:
 ```bash
 cd pi
 ./install.sh
 ```
 
-### 2. Analysis
+### 3. Analysis
 ```bash
 # Combine logs
 python3 user/analysis/read_data.py logs/
