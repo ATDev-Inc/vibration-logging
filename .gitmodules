@@ -1,0 +1,3 @@
+[submodule "pi/firmware/drivers/lsm6dsox-pid"]
+	path = pi/firmware/drivers/lsm6dsox-pid
+	url = https://github.com/STMicroelectronics/lsm6dsox-pid.git
